@@ -1,10 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 
-from main.views import *
+from internet_shop.views import *
 
 urlpatterns = [
-    path('', BaseView.as_view(), name='cbv_page'),
-    path('test_page/', BaseView.as_view(), name='cbv_page2')
+    path('', ProductListView.as_view(), name="home_page"),
+    path('product/<int:product_id>', ProductDetailView.as_view(), name="product_detail_page"),
+    path('cart/', CartView.as_view(), name="cart_page"),
+    path('order/', CheckoutView.as_view(), name="order_page"),
+    path('order/success/', OrderSuccessView.as_view(), name="order_detail_page"),    
 ]
     

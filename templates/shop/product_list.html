@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html>
+    <head>
+        <title>Some title</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+            {%for i in products%}
+
+                <p>
+
+                    {{i.name}}
+
+                </p>
+
+                <p>
+
+                    {{i.price}}
+
+                </p>
+
+                <p>
+
+                    {{i.photo}}
+
+                </p>
+
+                <p>
+                    
+                    {{i.category}}
+
+                </p>
+
+            {%endfor%}
+    </body>
+</html>

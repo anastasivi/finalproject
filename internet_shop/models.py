@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import dateti
+from datetime import datetime
 
 #Cart, Product, CartItem, Order
 
@@ -23,7 +23,7 @@ class Cart(models.Model):
     cart_owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner_cart')
     cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name='owner_cart')
 
-class Order(models.Models):
-    user_id = models.ForeignKey(User)
+class Order(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     data = models.DateTimeField()
-    cart = models.ForeignKey(Cart)
+    cart = models.ForeignKey(Cart, on_delete=models.DO_NOTHING)
