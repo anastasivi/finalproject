@@ -7,6 +7,18 @@
         <link rel="stylesheet" href="{% static 'style.css' %}">
     </head>
     <body>
+
+                <a href = "{%url 'register'%}">
+                        register
+                </a>
+
+                <a href = "{%url 'login'%}">
+                    log in
+                </a>
+
+                <a href = "{%url 'logout'%}">
+                    log out
+                </a>
             {%for i in products%}
 
                 <p>
