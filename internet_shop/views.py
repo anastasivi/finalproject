@@ -15,19 +15,19 @@ class ProductListView(View):
 
 # Детальная страница товара
 class ProductDetailView(View):
-    def get(self, request, pk):
-        product = Product.objects.get(pk=pk)
+    def get(self, request, product_id):
+        product = Product.objects.get(id=product_id)
         return render(request, "shop/product_detail.html", {"product": product})
     
-    def post(self, request, pk):
-        # например, можно добавить товар в корзину прямо со страницы товара
-        product = Product.objects.get(pk=pk)
-        cart, _ = Cart.objects.get_or_create(user=request.user, is_active=True)
-        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-        if not created:
-            cart_item.quantity += 1
-            cart_item.save()
-        return redirect("cart")
+    def post(self, request, product_id):
+        id_product_kuplen = request.POST.get("id_product_kupili")
+        product = Product.objects.get(id=id_product_kuplen)
+        cart_item = CartItem(item_id = product, count = 1)
+        cart_item.save()
+        new_cart = Cart(cart_owner=request.user, cart_item=cart_item)
+        new_cart.save()
+
+        return redirect("cart_page")
 
 
 # Корзина

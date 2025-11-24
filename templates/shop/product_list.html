@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>Some title</title>
-        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
 
@@ -23,7 +23,13 @@
 
                 <p>
 
-                    {{i.name}}
+                    <a href = "{%url 'product_detail_page' i.id%}">
+
+                        {{i.name}}
+
+                    </a>
+
+
 
                 </p>
 

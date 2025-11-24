@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html>
+    <head>
+        <title>Some title</title>
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    </head>
+    <body>
+
+                <a href = "{%url 'register'%}">
+                        register
+                </a>
+
+                <a href = "{%url 'login'%}">
+                    log in
+                </a>
+
+                <a href = "{%url 'logout'%}">
+                    log out
+                </a>
+
+                {{product.photo}}
+                {{product.name}}
+                {{product.price}}
+                {{product.count}}
+                {{product.description}}
+                {{product.category}}
+
+                <form method="post">
+                    {%csrf_token%}
+                    <input type="hidden" value="{{product.id}}" name="id_product_kupili">
+                    <button type="submit">Order</button>
+                </form>
+
+
+    </body>
+</html>

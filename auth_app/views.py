@@ -19,7 +19,7 @@ class RegisterView(View):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return redirect('task_list')
+            return redirect('home_page')
         return render(request, 'auth_app/register.html', {"form": form})
 
 class LoginView(View):
