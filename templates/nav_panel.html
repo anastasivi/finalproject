@@ -1,0 +1,43 @@
+{% load static %}
+
+<nav class="navigation-panel">
+    <div>
+        <img src="{% static 'images/logo.svg' %}" alt="AnimeShop Logo" class="logo">
+
+        
+        <a href = "{%url 'home_page'%}" class="linked-button">
+            Home
+        </a>
+        
+        {% if not request.user.is_authenticated %}
+            <a href = "{%url 'register'%}" class="linked-button">
+                    Register
+            </a>
+
+            <a href = "{%url 'login'%}" class="linked-button">
+                Log in
+            </a>
+
+        {% else %}
+
+            <a href = "{%url 'logout'%}" class="linked-button">
+                Log out
+            </a>
+            
+            <a href = "{%url 'cart_page'%}" class="linked-button">
+                Cart
+            </a>
+
+            <a href = "{%url 'profile_page'%}" class="linked-button">
+                Profile
+            </a>
+        {% endif %}
+    </div>
+    
+    <div>
+        <form method="GET">
+            <input type="text" name="search_item" placeholder="Find some product...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</nav>

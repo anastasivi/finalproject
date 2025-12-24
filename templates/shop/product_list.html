@@ -7,50 +7,36 @@
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
+        {% include 'nav_panel.html' %}
 
-                <a href = "{%url 'register'%}">
-                        register
-                </a>
-
-                <a href = "{%url 'login'%}">
-                    log in
-                </a>
-
-                <a href = "{%url 'logout'%}">
-                    log out
-                </a>
+        <main class="sekta">
             {%for i in products%}
+                <div class="product-card">
+                    <p>
+                        {{i.photo}}
+                        <img src="{% static 'images/' + i.photo.url %}" alt="{{i.name}}">
+                    </p>
 
-                <p>
+                    <p>
+                        <a href = "{%url 'product_detail_page' i.id%}" class="linked-button">
 
-                    <a href = "{%url 'product_detail_page' i.id%}">
+                            {{i.name}}
 
-                        {{i.name}}
+                        </a>
+                    </p>
 
-                    </a>
+                    <p>
+                        Price: {{i.price}}$
+                    </p>
 
+                    <p>
+                        {{i.count}}
+                    </p>
 
-
-                </p>
-
-                <p>
-
-                    {{i.price}}
-
-                </p>
-
-                <p>
-
-                    {{i.photo}}
-
-                </p>
-
-                <p>
-                    
-                    {{i.category}}
-
-                </p>
+                    <p><a class="details-button" href="{% url 'product_detail_page' i.id %}">Details</a></p>
+                </div>
 
             {%endfor%}
+        </main>
     </body>
 </html>

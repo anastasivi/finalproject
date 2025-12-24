@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Cart Detail</title>
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    </head>
+    <body>
+        {% include 'nav_panel.html' %}
+        <main class="profilepro">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="{{request.user.username}}">
+                <input type="text" name="email" placeholder="{{request.user.email}}">
+                <input type="password" name="password" placeholder="password">
+                <input type="text" name="adress" placeholder="">
+
+                <button type="submit">
+                    Submit info
+                </button>
+            </form>
+
+        </main>
+    </body>
+</html>

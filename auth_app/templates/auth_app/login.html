@@ -1,9 +1,20 @@
+<!DOCTYPE html>
 
-    <main class="container-fluid">
+{% load static %}
+
+<html>
+    <head>
+        <title>Cart Detail</title>
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    </head>
+    <body>
+        {% include 'nav_panel.html' %}
+        
         <h2>Login to account</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
-    </main>
+    </body>
+</html>

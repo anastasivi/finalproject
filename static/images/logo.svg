@@ -1,0 +1,22 @@
+<svg width="320" height="120" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6E6C8"/>
+      <stop offset="100%" stop-color="#D9B88C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Фоновой круг/знак -->
+  <circle cx="60" cy="60" r="45" fill="url(#grad)" stroke="#C5A782" stroke-width="3"/>
+
+  <!-- Минималистичное аниме-лицо -->
+  <circle cx="50" cy="52" r="6" fill="#5A4630"/>
+  <circle cx="70" cy="52" r="6" fill="#5A4630"/>
+  <path d="M45 70 Q60 80 75 70" stroke="#5A4630" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Название магазина -->
+  <text x="120" y="70" font-family="Segoe UI, sans-serif"
+        font-size="38" fill="#5A4630" font-weight="600">
+    AnimeShop
+  </text>
+</svg>

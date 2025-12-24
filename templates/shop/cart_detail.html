@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Cart Detail</title>
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    </head>
+    <body>
+        {% include 'nav_panel.html' %}
+        
+        {% for item in cart_items %}
+            <p>{{ item.item_id.name }} x{{ item.count }} - {{ item.count }} {{ item.item_id.price }}</p>
+        {% endfor %}
+    </body>
+</html>
+

@@ -7,32 +7,24 @@
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
-
-                <a href = "{%url 'register'%}">
-                        register
-                </a>
-
-                <a href = "{%url 'login'%}">
-                    log in
-                </a>
-
-                <a href = "{%url 'logout'%}">
-                    log out
-                </a>
-
-                {{product.photo}}
-                {{product.name}}
-                {{product.price}}
-                {{product.count}}
-                {{product.description}}
-                {{product.category}}
+        {% include 'nav_panel.html' %}
+        <main class="op">
+            <div>
+                <p></p><img src="{% static 'images/' + product.photo %}" alt="Product Image"></p>
+                <p>{{product.name}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.count}}</p>
+                <p>{{product.description}}</p>
+                <p>{{product.category}}</p>
 
                 <form method="post">
                     {%csrf_token%}
                     <input type="hidden" value="{{product.id}}" name="id_product_kupili">
-                    <button type="submit">Order</button>
+                    <p><input type="number" name="count_product_kupili" value="1" min="1"></p>
+                    <p><button type="submit">Order</button></p>
                 </form>
-
+            </div>
+        </main>
 
     </body>
 </html>

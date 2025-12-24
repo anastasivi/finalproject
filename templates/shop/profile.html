@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Cart Detail</title>
+        <link rel="stylesheet" href="{% static 'style/base.css' %}">
+    </head>
+    <body>
+        {% include 'nav_panel.html' %}
+        <main class="profilepro">
+            <p>
+                {{request.user.username}}
+            </p>
+
+            {{request.user.email}}
+            <p>
+            {{request.user.adress}}
+            </p>
+            <a href = "{% url 'edit_page' %}">
+                Edit info
+            </a>
+        </main>
+    </body>
+</html>
