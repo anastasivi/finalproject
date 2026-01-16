@@ -1153,6 +1153,188 @@ body {
 }
 
 /* ============================================
+   СТРАНИЦЫ АВТОРИЗАЦИИ (Login/Register)
+   ============================================ */
+
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
+    border: 2px solid rgba(0, 188, 212, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.auth-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+}
+
+.auth-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+}
+
+.auth-header h1 {
+    font-size: 2rem;
+    color: #00838f;
+    margin: 0 0 10px 0;
+}
+
+.auth-subtitle {
+    font-size: 1rem;
+    color: #00acc1;
+    margin: 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-form .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #00838f;
+    margin-bottom: 8px;
+}
+
+.auth-form .form-group label svg {
+    color: #00bcd4;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: 2px solid rgba(0, 188, 212, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: #fff;
+    color: #00838f;
+    font-family: inherit;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #00bcd4;
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+    background: linear-gradient(135deg, #e1f5fe 0%, #fff 100%);
+}
+
+.field-error {
+    display: block;
+    color: #f50057;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.field-help {
+    display: block;
+    color: #00acc1;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.form-errors {
+    background: rgba(245, 0, 87, 0.1);
+    border: 2px solid rgba(245, 0, 87, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.error-message {
+    color: #c51162;
+    font-weight: 600;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.btn-auth-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #39ff14 0%, #00e676 100%);
+    color: #004d40;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(57, 255, 20, 0.4);
+    margin-top: 10px;
+}
+
+.btn-auth-submit:hover {
+    background: linear-gradient(135deg, #00e676 0%, #39ff14 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(57, 255, 20, 0.5);
+}
+
+.btn-auth-submit:active {
+    transform: translateY(0);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px solid rgba(0, 188, 212, 0.1);
+}
+
+.auth-footer p {
+    color: #00838f;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.auth-footer a:hover {
+    color: #26c6da;
+    text-decoration: underline;
+}
+
+/* ============================================
    АДАПТИВНОСТЬ
    ============================================ */
 
@@ -1491,6 +1673,45 @@ body {
     }
 
     .cart-empty p {
+        font-size: 1rem;
+    }
+
+    /* Авторизация на мобильных */
+    .auth-container {
+        padding: 20px 15px;
+    }
+
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .auth-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .auth-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .auth-form input[type="text"],
+    .auth-form input[type="email"],
+    .auth-form input[type="password"] {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    .btn-auth-submit {
+        padding: 14px 24px;
         font-size: 1rem;
     }
 }
