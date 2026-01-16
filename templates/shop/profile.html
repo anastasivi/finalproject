@@ -1,26 +1,57 @@
 <!DOCTYPE html>
-
 {% load static %}
 
-<html>
+<html lang="ru">
     <head>
-        <title>Cart Detail</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Мой профиль</title>
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
         {% include 'nav_panel.html' %}
-        <main class="profilepro">
-            <p>
-                {{request.user.username}}
-            </p>
 
-            {{request.user.email}}
-            <p>
-            {{request.user.adress}}
-            </p>
-            <a href = "{% url 'edit_page' %}">
-                Edit info
-            </a>
+        <main class="profile-container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h1 class="profile-title">Мой профиль</h1>
+                </div>
+
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">Имя пользователя</span>
+                        <span class="info-value">{{ request.user.username }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">{{ request.user.email }}</span>
+                    </div>
+
+                    {% if request.user.adress %}
+                    <div class="info-item">
+                        <span class="info-label">Адрес</span>
+                        <span class="info-value">{{ request.user.adress }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="profile-actions">
+                    <a href="{% url 'edit_page' %}" class="btn-edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Редактировать профиль
+                    </a>
+                </div>
+            </div>
         </main>
     </body>
-</html>
+</html> 

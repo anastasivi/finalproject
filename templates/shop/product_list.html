@@ -1,42 +1,68 @@
 <!DOCTYPE html>
-{%load static%}
+{% load static %}
 
-<html>
+<html lang="ru">
     <head>
-        <title>Some title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Каталог товаров</title>
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
+        <link rel="stylesheet" href="{% static 'style/products.css' %}">
     </head>
     <body>
         {% include 'nav_panel.html' %}
 
-        <main class="sekta">
-            {%for i in products%}
-                <div class="product-card">
-                    <p>
-                        {{i.photo}}
-                        <img src="{% static 'images/' + i.photo.url %}" alt="{{i.name}}">
-                    </p>
+        <main class="products-container">
+            <div class="products-header">
+                <h1>Наши товары</h1>
+                <p class="products-count">Всего товаров: {{ products|length }}</p>
+            </div>
 
-                    <p>
-                        <a href = "{%url 'product_detail_page' i.id%}" class="linked-button">
+            <div class="products-grid">
+                {% for i in products %}
+                    <article class="product-card">
+                        <div class="product-image">
+                            <img src="{{ i.photo.url }}" alt="{{ i.name }}" loading="lazy">
+                            {% if i.count < 5 and i.count > 0 %}
+                                <span class="badge badge-low">Мало</span>
+                            {% elif i.count == 0 %}
+                                <span class="badge badge-out">Нет в наличии</span>
+                            {% endif %}
+                        </div>
 
-                            {{i.name}}
+                        <div class="product-info">
+                            <h2 class="product-name">
+                                <a href="{% url 'product_detail_page' i.id %}">
+                                    {{ i.name }}
+                                </a>
+                            </h2>
 
-                        </a>
-                    </p>
+                            <div class="product-details">
+                                <p class="product-price">
+                                    <span class="price-value">{{ i.price }}</span>
+                                    <span class="currency">$</span>
+                                </p>
 
-                    <p>
-                        Price: {{i.price}}$
-                    </p>
+                                <p class="product-stock">
+                                    {% if i.count > 0 %}
+                                        <span class="in-stock">В наличии: {{ i.count }}</span>
+                                    {% else %}
+                                        <span class="out-of-stock">Нет в наличии</span>
+                                    {% endif %}
+                                </p>
+                            </div>
 
-                    <p>
-                        {{i.count}}
-                    </p>
-
-                    <p><a class="details-button" href="{% url 'product_detail_page' i.id %}">Details</a></p>
-                </div>
-
-            {%endfor%}
+                            <a class="btn-details" href="{% url 'product_detail_page' i.id %}">
+                                Подробнее
+                            </a>
+                        </div>
+                    </article>
+                {% empty %}
+                    <div class="no-products">
+                        <p>Товары не найдены</p>
+                    </div>
+                {% endfor %}
+            </div>
         </main>
     </body>
 </html>

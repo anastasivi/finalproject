@@ -87,7 +87,7 @@ class Product(models.Model):
     price = models.FloatField()
     description = models.TextField(max_length=2000)
     count = models.IntegerField()
-    photo = models.CharField()
+    photo = models.ImageField(upload_to="images")
 
 class CartItem(models.Model):
     item_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='owner_cart')

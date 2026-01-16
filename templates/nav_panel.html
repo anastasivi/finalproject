@@ -4,40 +4,37 @@
     <div>
         <img src="{% static 'images/logo.svg' %}" alt="AnimeShop Logo" class="logo">
 
-        
-        <a href = "{%url 'home_page'%}" class="linked-button">
+        <a href="{% url 'home_page' %}" class="linked-button">
             Home
         </a>
         
         {% if not request.user.is_authenticated %}
-            <a href = "{%url 'register'%}" class="linked-button">
-                    Register
+            <a href="{% url 'register' %}" class="linked-button">
+                Register
             </a>
 
-            <a href = "{%url 'login'%}" class="linked-button">
+            <a href="{% url 'login' %}" class="linked-button">
                 Log in
             </a>
-
         {% else %}
-
-            <a href = "{%url 'logout'%}" class="linked-button">
+            <a href="{% url 'logout' %}" class="linked-button">
                 Log out
             </a>
             
-            <a href = "{%url 'cart_page'%}" class="linked-button">
+            <a href="{% url 'cart_page' %}" class="linked-button">
                 Cart
             </a>
 
-            <a href = "{%url 'profile_page'%}" class="linked-button">
+            <a href="{% url 'profile_page' %}" class="linked-button">
                 Profile
             </a>
         {% endif %}
     </div>
     
     <div>
-        <form method="GET">
-            <input type="text" name="search_item" placeholder="Find some product...">
-            <button type="submit">Search</button>
+        <form method="GET" class="search-form">
+            <input type="text" name="search_item" placeholder="Find some product..." class="search-input">
+            <button type="submit" class="search-button">Search</button>
         </form>
     </div>
 </nav>

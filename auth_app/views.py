@@ -4,8 +4,9 @@ from django.contrib.auth import (
     authenticate as auth_authenticate,
     logout as auth_logout
 )
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import View
+from internet_shop.admin import UserCreationForm
 
 class RegisterView(View):
     def get(self, request):

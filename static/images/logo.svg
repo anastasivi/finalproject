@@ -1,22 +1,20 @@
-<svg width="320" height="120" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F6E6C8"/>
-      <stop offset="100%" stop-color="#D9B88C"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Фоновой круг/знак -->
-  <circle cx="60" cy="60" r="45" fill="url(#grad)" stroke="#C5A782" stroke-width="3"/>
-
-  <!-- Минималистичное аниме-лицо -->
-  <circle cx="50" cy="52" r="6" fill="#5A4630"/>
-  <circle cx="70" cy="52" r="6" fill="#5A4630"/>
-  <path d="M45 70 Q60 80 75 70" stroke="#5A4630" stroke-width="3" fill="none" stroke-linecap="round"/>
-
-  <!-- Название магазина -->
-  <text x="120" y="70" font-family="Segoe UI, sans-serif"
-        font-size="38" fill="#5A4630" font-weight="600">
-    AnimeShop
-  </text>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 841.89 595.28" style="enable-background:new 0 0 841.89 595.28;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F7F4C4;stroke:#201600;stroke-miterlimit:10;}
+	.st1{fill:#3EB5F1;stroke:#201600;stroke-miterlimit:10;}
+	.st2{fill:#EF3F3F;stroke:#201600;stroke-miterlimit:10;}
+</style>
+<circle class="st0" cx="418.2" cy="297.64" r="241.55"/>
+<path class="st1" d="M308.89,151.01c0,0,25.56-94.93-112.18-94.93s-69.39,300.28-69.39,300.28s-4.14,99.45-71.46,19.71
+	c0,0,38.46,157.2,127.45,30.96S308.89,151.01,308.89,151.01z"/>
+<path class="st1" d="M533,151.01c0,0-25.56-94.93,112.18-94.93s69.39,300.28,69.39,300.28s4.14,99.45,71.46,19.71
+	c0,0-38.46,157.2-127.45,30.96S533,151.01,533,151.01z"/>
+<path class="st1" d="M418.2,56.09c0,0,252.44,4.74,239.93,269.7C388.27,328.01,418.2,56.09,418.2,56.09
+	c-267.45,21.8-239.91,269.7-239.91,269.7c212.56,0,237.15-181.2,239.65-208.64c0.21-2.25,0.26-3.46,0.26-3.46"/>
+<circle class="st1" cx="331.48" cy="346.51" r="20.71"/>
+<circle class="st1" cx="487.85" cy="346.51" r="20.71"/>
+<path class="st2" d="M352.19,419.87h114.95C467.14,419.87,411.22,536.76,352.19,419.87z"/>
 </svg>

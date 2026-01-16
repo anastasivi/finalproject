@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Product, Cart, CartItem, Order
+from .models import Product, Cart, CartItem, Order, MyUser
 
 
 # Список товаров
@@ -98,3 +98,19 @@ class ProfileEditView(LoginRequiredMixin, View):
         email = request.POST.get("email")
         password = request.POST.get("password")
         adress = request.POST.get("adress")
+            
+        is_correct_username = len(username) >= 5 and len(username) <= 30   
+        is_correct_email = "@" in email
+
+    
+        user = MyUser.objects.get(id=request.user.id)
+        if username and is_correct_username:
+            user.username = username
+        if email and is_correct_email:
+            user.email = email
+        if password:
+            user.set_password(password) 
+        if adress:
+            user.adress = adress
+        user.save()
+        return redirect("profile_page")

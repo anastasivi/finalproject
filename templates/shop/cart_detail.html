@@ -1,18 +1,127 @@
 <!DOCTYPE html>
-
 {% load static %}
 
-<html>
+<html lang="ru">
     <head>
-        <title>Cart Detail</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Корзина</title>
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
         {% include 'nav_panel.html' %}
-        
-        {% for item in cart_items %}
-            <p>{{ item.item_id.name }} x{{ item.count }} - {{ item.count }} {{ item.item_id.price }}</p>
-        {% endfor %}
+
+        <main class="cart-container">
+            <div class="cart-header">
+                <div class="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                </div>
+                <h1>Моя корзина</h1>
+            </div>
+
+            {% if cart_items %}
+                <div class="cart-content">
+                    <div class="cart-items">
+                        {% for item in cart_items %}
+                            <div class="cart-item">
+                                <div class="item-image">
+                                    <img src="{{ item.item_id.photo.url }}" alt="{{ item.item_id.name }}">
+                                </div>
+
+                                <div class="item-details">
+                                    <h3 class="item-name">{{ item.item_id.name }}</h3>
+                                    <p class="item-price">
+                                        <span class="price-label">Цена:</span>
+                                        <span class="price-value">{{ item.item_id.price }}</span>
+                                        <span class="currency">$</span>
+                                    </p>
+                                </div>
+
+                                <div class="item-quantity">
+                                    <span class="quantity-label">Количество:</span>
+                                    <span class="quantity-value">{{ item.count }}</span>
+                                </div>
+
+                                <div class="item-total">
+                                    <span class="total-label">Итого:</span>
+                                    <span class="total-value">
+                                        {% widthratio item.item_id.price 1 item.count %}
+                                    </span>
+                                    <span class="currency">$</span>
+                                </div>
+
+                                <button class="item-remove" title="Удалить из корзины">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="cart-summary">
+                        <h2>Итого</h2>
+                        
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <span>Товаров:</span>
+                                <span>{{ cart_items|length }}</span>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>Количество:</span>
+                                <span>
+                                    {% widthratio cart_items.0.count 1 1 as temp %}
+                                    {{ cart_items|length }}
+                                </span>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-total">
+                                <span>Общая сумма:</span>
+                                <span class="total-price">
+                                    <!-- Здесь должна быть общая сумма -->
+                                    <span class="price-value">0.00</span>
+                                    <span class="currency">$</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="btn-checkout">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 11 12 14 22 4"></polyline>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                            Оформить заказ
+                        </button>
+
+                        <a href="{% url 'home_page' %}" class="btn-continue">
+                            Продолжить покупки
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="cart-empty">
+                    <div class="empty-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </div>
+                    <h2>Ваша корзина пуста</h2>
+                    <p>Добавьте товары, чтобы продолжить покупки</p>
+                    <a href="{% url 'home_page' %}" class="btn-shop">
+                        Перейти к покупкам
+                    </a>
+                </div>
+            {% endif %}
+        </main>
     </body>
 </html>
-

@@ -1,30 +1,87 @@
 <!DOCTYPE html>
-{%load static%}
+{% load static %}
 
-<html>
+<html lang="ru">
     <head>
-        <title>Some title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ product.name }} - Детали товара</title>
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
+        <link rel="stylesheet" href="{% static 'style/products.css' %}">
+        <link rel="stylesheet" href="{% static 'style/product-detail.css' %}">
     </head>
     <body>
         {% include 'nav_panel.html' %}
-        <main class="op">
-            <div>
-                <p></p><img src="{% static 'images/' + product.photo %}" alt="Product Image"></p>
-                <p>{{product.name}}</p>
-                <p>{{product.price}}</p>
-                <p>{{product.count}}</p>
-                <p>{{product.description}}</p>
-                <p>{{product.category}}</p>
 
-                <form method="post">
-                    {%csrf_token%}
-                    <input type="hidden" value="{{product.id}}" name="id_product_kupili">
-                    <p><input type="number" name="count_product_kupili" value="1" min="1"></p>
-                    <p><button type="submit">Order</button></p>
-                </form>
+        <main class="product-detail-container">
+            <div class="product-detail">
+                <!-- Изображение товара -->
+                <div class="detail-image">
+                    <img src="{{ product.photo.url }}" alt="{{ product.name }}">
+                </div>
+
+                <!-- Информация о товаре -->
+                <div class="detail-info">
+                    <h1 class="detail-name">{{ product.name }}</h1>
+                    
+                    <div class="detail-category">
+                        <span class="category-label">Категория:</span>
+                        <span class="category-value">{{ product.category }}</span>
+                    </div>
+
+                    <div class="detail-price">
+                        <span class="price-value">{{ product.price }}</span>
+                        <span class="currency">$</span>
+                    </div>
+
+                    <div class="detail-stock">
+                        {% if product.count > 0 %}
+                            <span class="in-stock">✓ В наличии: {{ product.count }} шт.</span>
+                        {% else %}
+                            <span class="out-of-stock">✗ Нет в наличии</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="detail-description">
+                        <h2>Описание</h2>
+                        <p>{{ product.description|linebreaks }}</p>
+                    </div>
+
+                    <!-- Форма заказа -->
+                    {% if product.count > 0 %}
+                        <form method="post" class="order-form">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ product.id }}" name="id_product_kupili">
+                            
+                            <div class="quantity-selector">
+                                <label for="quantity">Количество:</label>
+                                <input 
+                                    type="number" 
+                                    id="quantity"
+                                    name="count_product_kupili" 
+                                    value="1" 
+                                    min="1" 
+                                    max="{{ product.count }}"
+                                    class="quantity-input"
+                                >
+                            </div>
+
+                            <button type="submit" class="btn-order">
+                                <span>Заказать</span>
+                            </button>
+                        </form>
+                    {% else %}
+                        <div class="unavailable-notice">
+                            <p>К сожалению, этот товар временно отсутствует</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Кнопка назад -->
+            <div class="back-link">
+                <a href="{% url 'home_page' %}" class="btn-back">← Вернуться к каталогу</a>
             </div>
         </main>
-
     </body>
 </html>
