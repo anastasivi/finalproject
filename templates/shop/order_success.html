@@ -1,14 +1,88 @@
 <!DOCTYPE html>
-
 {% load static %}
 
-<html>
+<html lang="ru">
     <head>
-        <title>Cart Detail</title>
+        <link rel="icon" href="{%static 'images/favicon.png'%}" type="image/png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Заказ оформлен</title>
         <link rel="stylesheet" href="{% static 'style/base.css' %}">
     </head>
     <body>
         {% include 'nav_panel.html' %}
-        
+
+        <main class="success-container">
+            <div class="success-card">
+                <div class="success-animation">
+                    <div class="success-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                </div>
+
+                <h1 class="success-title">Заказ успешно оформлен!</h1>
+                <p class="success-message">Спасибо за ваш заказ. Мы отправим вам подтверждение на email.</p>
+
+                {% if order_number %}
+                <div class="order-info">
+                    <div class="order-number">
+                        <span class="order-label">Номер заказа:</span>
+                        <span class="order-value">#{{ order_number }}</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="success-details">
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div>
+                            <h3>Проверьте email</h3>
+                            <p>Детали заказа отправлены на вашу почту</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                        <div>
+                            <h3>Доставка в пути</h3>
+                            <p>Мы свяжемся с вами для уточнения деталей</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <div>
+                            <h3>Доставка по адресу</h3>
+                            <p>Ожидаемое время: 3-5 рабочих дней</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-actions">
+                    <a href="{% url 'home_page' %}" class="btn-home">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Вернуться на главную
+                    </a>
+                    <a href="{% url 'profile_page' %}" class="btn-profile">Посмотреть профиль</a>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

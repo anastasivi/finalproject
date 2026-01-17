@@ -10,8 +10,9 @@ urlpatterns = [
     path('product/<int:product_id>', ProductDetailView.as_view(), name="product_detail_page"),
     path('cart/', CartView.as_view(), name="cart_page"),
     path('order/', CheckoutView.as_view(), name="order_page"),
-    path('order/success/', OrderSuccessView.as_view(), name="order_detail_page"),   
+    path('order/success/<int:order_id>', OrderSuccessView.as_view(), name="order_detail_page"),   
     path('profile/', ProfileView.as_view(), name="profile_page"),   
-    path('profile/edit', ProfileEditView.as_view(), name="edit_page")
+    path('profile/edit', ProfileEditView.as_view(), name="edit_page"),
+    path('order/list', OrdersListView.as_view(), name="orderlist_view_page")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

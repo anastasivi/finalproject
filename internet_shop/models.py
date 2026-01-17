@@ -89,15 +89,16 @@ class Product(models.Model):
     count = models.IntegerField()
     photo = models.ImageField(upload_to="images")
 
+class Cart(models.Model):
+    cart_owner = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='owner_cart')
+    is_active = models.BooleanField(default=True)
+
 class CartItem(models.Model):
     item_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='owner_cart')
     count = models.IntegerField()    
-
-class Cart(models.Model):
-    cart_owner = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='owner_cart')
-    cart_item = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name='owner_cart')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
 class Order(models.Model):
     user_id = models.ForeignKey(MyUser, on_delete=models.DO_NOTHING)
-    data = models.DateTimeField()
+    data = models.DateTimeField(auto_now_add=True)
     cart = models.ForeignKey(Cart, on_delete=models.DO_NOTHING)

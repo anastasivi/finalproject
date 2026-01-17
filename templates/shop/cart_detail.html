@@ -3,6 +3,7 @@
 
 <html lang="ru">
     <head>
+        <link rel="icon" href="{%static 'images/favicon.png'%}" type="image/png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Корзина</title>
@@ -48,9 +49,7 @@
 
                                 <div class="item-total">
                                     <span class="total-label">Итого:</span>
-                                    <span class="total-value">
-                                        {% widthratio item.item_id.price 1 item.count %}
-                                    </span>
+                                    <span class="total-value">{{ item.subtotal }}</span>
                                     <span class="currency">$</span>
                                 </div>
 
@@ -75,10 +74,7 @@
 
                             <div class="summary-row">
                                 <span>Количество:</span>
-                                <span>
-                                    {% widthratio cart_items.0.count 1 1 as temp %}
-                                    {{ cart_items|length }}
-                                </span>
+                                <span>{{ total_items }}</span>
                             </div>
 
                             <div class="summary-divider"></div>
@@ -86,20 +82,19 @@
                             <div class="summary-total">
                                 <span>Общая сумма:</span>
                                 <span class="total-price">
-                                    <!-- Здесь должна быть общая сумма -->
-                                    <span class="price-value">0.00</span>
+                                    <span class="price-value">{{ total_price }}</span>
                                     <span class="currency">$</span>
                                 </span>
                             </div>
                         </div>
 
-                        <button class="btn-checkout">
+                        <a class="btn-checkout" href="{%url 'order_page'%}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="9 11 12 14 22 4"></polyline>
                                 <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                             </svg>
                             Оформить заказ
-                        </button>
+                        </a>
 
                         <a href="{% url 'home_page' %}" class="btn-continue">
                             Продолжить покупки
